@@ -6,25 +6,19 @@
 
 int main(){
   char *s1 = (char *)calloc(256, sizeof(char));
-  int fd = open("a.ppm", O_CREAT | O_RDWR | O_APPEND, 0644);
-  sprintf(s1, "P3\n500 500 256\n");
+  int fd = open("a.ppm", O_CREAT | O_WRONLY, 0644);
+  sprintf(s1, "P3\n 500 500 255\n");
   write(fd, s1, strlen(s1));
 
   //int randfd = open("/dev/random", O_RDONLY);
   //unsigned int *r = (int *)calloc(1, sizeof(int));
   int i=0, z=0, j=0, r=0;
 
-  for(;i<500;i++){
-    for(z=0;z<500;z++){
-      //read(randfd, r, sizeof(int));
-      r = (i*z + 1000) % 256;
-      sprintf(s1, "%u ", r);
-      //printf("%s", s1);
-      write(fd, s1, strlen(s1));
-      //write(fd, " ", sizeof(" "));
-    }
-    //printf("\n");
-    write(fd, "\n", sizeof("\n"));
+  for(i=0;i<500*500;i++){
+    r = (i + 1000) % 256;
+    sprintf(s1, "%u ", r);
+    write(fd, s1, strlen(s1));
+    //write(fd, "\n", strlen("\n"));
   }
   close(fd);
   free(s1);
