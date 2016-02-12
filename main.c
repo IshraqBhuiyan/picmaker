@@ -15,9 +15,11 @@ int main(){
   int i=0, z=0, j=0, r=0;
 
   for(i=0;i<500*500;i++){
-    r = (i+1000) * 42 % 256;
-    sprintf(s1, "%u ", r);
-    write(fd, s1, sizeof(char *));
+    for(j=0; j<3;j++){
+      r = (i+j+1000) * 42 % 256;
+      sprintf(s1, "%d ", r);
+      write(fd, s1, strlen(s1));
+    }
     //write(fd, "\n", strlen("\n"));
   }
   close(fd);
