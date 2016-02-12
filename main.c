@@ -15,9 +15,9 @@ int main(){
   int i=0, z=0, j=0, r=0;
 
   for(i=0;i<500*500;i++){
-    r = (i + 1000) % 256;
+    r = (i+1000) * 42 % 256;
     sprintf(s1, "%u ", r);
-    write(fd, s1, strlen(s1));
+    write(fd, s1, sizeof(char *));
     //write(fd, "\n", strlen("\n"));
   }
   close(fd);
