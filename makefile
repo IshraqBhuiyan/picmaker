@@ -5,4 +5,4 @@ run:
 	./pic
 
 clean:
-	rm pic a.ppm
+	rm pic pic.ppm
